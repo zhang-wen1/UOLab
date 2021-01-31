@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="renderer" content="webkit">
+    <title>rumen</title>
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <script src="../../js/echarts.js"></script>
+    <script src="../../js/lay-module/echarts/echartsTheme.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>成员统计</legend>
+        </fieldset>
+
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <div class="layui-form" style="margin: 10px 10px 10px 10px">
+                    <form class="layui-form layui-form-pane" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">选择学院</label>
+                                <div class="layui-input-inline">
+                                    <label>
+                                        <select name="deptname">
+                                            <option value="" selected="selected">--请选择--</option>
+                                            <option value="1" >计算机科学与技术学院</option>
+                                            <option value="2">机械制造及其自动化学院</option>
+                                            <option value="3">经济管理学院</option>
+                                            <option value="4">法学院</option>
+                                            <option value="5">人文学院</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">年级</label>
+                                <div class="layui-input-inline" >
+                                    <input type="text" name="grade" id="grade" autocomplete="off" placeholder="请选择年级" class="layui-input" readonly="readonly">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">选择专业</label>
+                                <div class="layui-input-inline" >
+                                    <label for="major"></label>
+                                    <select name="major" id="major" >
+                                        <option value="" selected="selected">--请选择--</option>
+                                        <option value="162056">计算机科学与技术</option>
+                                        <option value="162054">物联网工程</option>
+                                        <option value="162055">软件工程</option>
+                                        <option value="162057">智能科学</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">状态</label>
+                                <div class="layui-input-inline" >
+                                    <select  name="status">
+                                        <option value="" selected="selected">--请选择--</option>
+                                        <option value="1">正常</option>
+                                        <option value="2">退出</option>
+                                        <option value="3">毕业</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit="" lay-filter="data-search-btn1"><i class="layui-icon layui-icon-search"></i> 搜索</button>
+                                <button type="reset" class="layui-btn layui-btn-primary"><i class="layui-icon layui-icon-refresh"></i>重置</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="layui-row">
+            <div class="layui-col-md12 layui-col-lg12 layui-col-sm12">
+                <div class="layui-card-body">
+                    <!--图表一和图表二-->
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6 " >
+                            <div class="layui-card" style="box-shadow: 0px 0px 10px 3px gainsboro; border-radius: 20px;">
+                                <div class="layui-card-header" style="font-weight: bold; font-size: 18px;"><i class="fa fa-line-chart icon"></i>各年级人数统计</div>
+                                <div class="layui-card-body">
+                                    <div id="main" style="width: 100%; height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6 ">
+                            <div class="layui-card" style="border-radius: 20px; border: 2px solid buttonface; box-shadow: 0px 0px 10px 3px gainsboro;">
+                                <div class="layui-card-header" style="font-weight: bold; font-size: 18px;"></div>
+                                <div class="layui-card-body">
+                                    <div id="main1" style="width: 100%; height: 400px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="padding:20px;">
+
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md6 ">
+                    <div class="layui-card" style="box-shadow: 0px 0px 10px 3px gainsboro; border-radius: 20px;">
+                        <div class="layui-card-header" style="font-weight: bold; font-size: 18px;"><i class="fa fa-line-chart icon"></i>各专业人数统计</div>
+                        <div class="layui-card-body">
+                            <div id="main2" style="width: 100%; height: 400px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6 ">
+                    <div class="layui-card" style="border-radius: 20px; border: 2px solid buttonface; box-shadow: 0px 0px 10px 3px gainsboro;">
+                        <div class="layui-card-header" style="font-weight: bold; font-size: 18px;"></div>
+                        <div class="layui-card-body">
+                            <div id="main3" style="width: 100%; height: 400px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+
+<script>
+    //JavaScript代码区域
+    layui.use('element','element', 'form','laydate', function(){
+        var element = layui.element;
+    });
+</script>
+<script>
+    // 定义全局变量
+    var $;
+    layui.use(['form', 'layer', 'laydate'], function() {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer,
+            laydate = layui.laydate;
+        //日期1
+        laydate.render({
+            elem: '#grade',
+            type: 'year',
+            max:'2021-01-01'
+        });
+        //日期2
+        laydate.render({
+            elem: '#daterange',
+            type: 'month',
+            range: '~'
+        });
+
+
+
+   form.render();
+        // form.render(null, 'test1'); //更新 lay-filter="test1" 所在容器内的全部表单状态
+        form.render('select', 'test2'); //更新 lay-filter="test2" 所在容器内的全部 select 状态
+
+        // 监听搜索_1操作
+        form.on('submit(data-search-btn1)', function (data) {
+            var result = JSON.stringify(data.field);
+            layer.alert(result, {
+                title: '最终的搜索信息'
+            });
+
+            return false;
+        });
+        // 监听搜索_2操作
+        form.on('submit(data-search-btn2)', function (data) {
+            var result = JSON.stringify(data.field);
+            layer.alert(result, {
+                title: '最终的搜索信息'
+            });
+
+            return false;
+        })
+    })
+
+
+</script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '年级人数'
+        },
+        tooltip: {},
+        legend: {
+            data:['年级']
+        },
+        xAxis: {
+            data: ["大一","大二","大三","大四"]
+        },
+        yAxis: {},
+        series: [{
+            name: '年级',
+            type: 'bar',
+            data: [5200, 4920, 5600, 4650,]
+            ,color:'#61a0a8'
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    // echarts 窗口缩放自适应
+    window.onresize = function() {
+        myChart.resize();
+    }
+</script>
+<script>
+
+    var chartDom = document.getElementById('main1');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        title: {
+            text: '学院人数统计',
+            subtext: '',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+        },
+        series: [
+            {
+                name: '学院人数',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: 521, name: '计算机科学与技术学院'},
+                    {value: 735, name: '机械制造及其自动化学院'},
+                    {value: 480, name: '经济管理学院'},
+                    {value: 275, name: '法学院'},
+                    {value: 300, name: '人文学院'}
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+    // echarts 窗口缩放自适应
+    window.onresize = function() {
+        myChart.resize();
+    }
+
+</script>
+<script type="text/javascript">
+    var chartDom = document.getElementById('main2');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['计算机科学与技术', '物联网工程', '软件工程', '智能科学', '机器人制造']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [130, 159, 146, 100, 80],
+            type: 'bar',
+            showBackground: true,
+            backgroundStyle: {
+                color: 'rgba(180, 180, 180, 0.2)'
+            }
+        }]
+    };
+
+    option && myChart.setOption(option);
+    // echarts 窗口缩放自适应
+    window.onresize = function() {
+        myChart.resize();
+    }
+</script>
+
+<script type="text/javascript">
+    var chartDom = document.getElementById('main3');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+        title: {
+            text: '学生状态统计',
+            subtext: '',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+        },
+        series: [
+            {
+                name: '状态',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: 22040, name: '正常'},
+                    {value: 23, name: '退出'},
+                    {value: 13254, name: '毕业'},
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    option && myChart.setOption(option);
+    // echarts 窗口缩放自适应
+    window.onresize = function() {
+        myChart.resize();
+    }
+</script>
+</body>
+</html>

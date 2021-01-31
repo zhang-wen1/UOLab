@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layui</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" media="all">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-form layuimini-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label required">日期</label>
+        <div class="layui-input-block">
+            <input type="text" id="date1" name="date1"lay-verify="required" placeholder="请选择" value="" class="layui-input" >
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">技术专题</label>
+        <div class="layui-input-block">
+            <input type="text" name="jishu" id="jishu" onblur="checkJishu()" lay-verify="required" placeholder="请输入技术专题" value="" class="layui-input"><span id="s2"></span>
+            <tip>格式为字母和汉字组合，1-50个字符</tip>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">主讲人</label>
+        <div class="layui-input-block">
+            <input type="text" id="zuname" onblur="checkZuName()"   name="zuname" lay-verify="required" lay-reqtext="主讲人不能为空" placeholder="请输入主讲人姓名" value="" class="layui-input"><span id="s3"></span>
+            <tip>要求2-4 个汉字</tip>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">组织人</label>
+        <div class="layui-input-block">
+            <select name="zuzhi" lay-filter="zuhzi">
+                <option value=""></option>
+                <option value="1">学生</option>
+                <option value="2">UOL老师</option>
+                <option value="3">其他</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">地点</label>
+        <div class="layui-input-block">
+            <input type="text" name="job"  placeholder="请输入地点" value="" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label required">群体说明</label>
+        <div class="layui-input-block">
+            <textarea name="student1" class="layui-textarea" placeholder="请输入群体说明"></textarea>
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label ">参加方式</label>
+        <div class="layui-input-block">
+            <select name="way" lay-filter="way">
+                <option value=""></option>
+                <option value="1">线下</option>
+                <option value="2">直播</option>
+                <option value="3">录播</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">创新学分值</label>
+        <div class="layui-input-block">
+            <input type="text" name="credit"  id="credit" onblur="checkCredit1()"  placeholder="请输入创新学分值" value="" class="layui-input"><span id="s4"></span>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">参加人数</label>
+        <div class="layui-input-block">
+            <input type="text" name="number1" id="number1" onblur="checkNumber()"  placeholder="请输入参加人数"  value="" class="layui-input"><span id="s5"></span>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注信息</label>
+        <div class="layui-input-block">
+            <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+        </div>
+    </div>
+</div>
+<script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form','jquery','laydate'], function () {
+        var form = layui.form,
+            layer = layui.layer,
+            laydate = layui.laydate,
+
+            $ = layui.$;
+
+//日期选择器
+        laydate.render({
+            elem: '#date1',
+            type: 'date', //默认，可不填
+            min:'1966-01-01',
+            max:'2021-01-01',
+            trigger:'click',
+        });
+
+
+        //年选择器
+        laydate.render({
+            elem: '#year'
+            ,type: 'year',
+            max:'2020-12-31',
+            trigger:'click',
+        });
+
+
+
+        //监听提交
+        form.on('submit(saveBtn)', function (data) {
+            var index = layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            }, function () {
+
+                // 关闭弹出层
+                layer.close(index);
+
+                var iframeIndex = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(iframeIndex);
+
+            });
+
+            return false;
+        });
+
+
+    });
+</script>
+<!-- 技术专题验证-->
+<script>
+    function checkJishu(){
+        var jishu=document.getElementById('jishu').value;
+        var spanEle1=document.getElementById('s2');
+        var pattern= /^[a-zA-Z]+[\u4e00-\u9fa5]{1,50}$/;
+        if(jishu==null || jishu==''|| jishu.trim().length==0){
+            spanEle1.innerHTML="<small style='color:red'>技术专题不能为空</small>"
+            return false;
+        }else if(!pattern.test(jishu)){
+            spanEle1.innerHTML="<small style='color:red'>技术专题不合格</small>"
+            return false
+        }else{
+            spanEle1.innerHTML="<small > </small>"
+            return true
+        }
+
+    }
+
+</script>
+<!--主讲人姓名验证-->
+<script>
+
+    function checkZuName(){
+        var zuname=document.getElementById('zuname').value;
+        var spanEle1=document.getElementById('s3');
+        var pattern= /^[\u4e00-\u9fa5]{2,4}$/;
+        if(zuname==null || zuname==''|| zuname.trim().length==0){
+            spanEle1.innerHTML="<small style='color:red'>主讲人姓名不能为空</small>"
+            return false;
+        }else if(!pattern.test(zuname)){
+            spanEle1.innerHTML="<small style='color:red'>主讲人姓名不合格</small>"
+            return false
+        }else{
+            spanEle1.innerHTML="<small > </small>"
+            return true
+        }
+
+    }
+</script>
+<!--创新学分验证-->
+<script>
+
+    function checkCredit1(){
+        var credit=document.getElementById('credit').value;
+        var spanEle1=document.getElementById('s4');
+        var pattern= /^[0-9]*$/;
+        if(!pattern.test(credit)){
+            spanEle1.innerHTML="<small style='color:red'>创新学分格式错误，请输入数字</small>"
+            return false
+        }else{
+            spanEle1.innerHTML="<small > </small>"
+            return true
+        }
+
+    }
+</script>
+<!--参加人数验证-->
+<script>
+
+    function checkNumber(){
+        var number1=document.getElementById('number1').value;
+        var spanEle1=document.getElementById('s5');
+        var pattern= /^[0-9]*$/;
+           if(!pattern.test(number1)){
+            spanEle1.innerHTML="<small style='color:red'>参加人数格式错误，请输入数字</small>"
+            return false
+        }else{
+            spanEle1.innerHTML="<small > </small>"
+            return true
+        }
+
+    }
+</script>
+
+</body>
+</html>
