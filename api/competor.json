@@ -1,0 +1,108 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 100,
+  "data": [
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    },
+    {
+      "year": "2021",
+      "compete": "java",
+      "people":"张三",
+      "person": "赵四",
+      "topic": "程序构造",
+      "gain": "一等奖",
+      "teacher": "宋五",
+      "status": 1
+    }
+
+  ]
+}
