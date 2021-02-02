@@ -48,10 +48,22 @@
           "icon": "fa fa-plus-circle",
           "target": "_self"
         },
+         {
+          "title": "查询院系",
+          "href": "page/colleage/findcollege.html",
+          "icon": "fa fa-search-plus",
+          "target": "_self"
+        },
         {
           "title": "添加专业",
           "href": "page/colleage/addMajor.html",
           "icon": "fa fa-plus-circle",
+          "target": "_self"
+        }
+        {
+          "title": "查询专业",
+          "href": "page/colleage/findMajor.html",
+          "icon": "fa fa-search-plus",
           "target": "_self"
         }
       ]
