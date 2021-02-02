@@ -1,0 +1,67 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 100,
+  "data": [
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    },
+    {
+      "college": "电子学院",
+      "major": "电子工程",
+      "times":"2020-01-01",
+      "status": 1
+    }
+  ]
+}
