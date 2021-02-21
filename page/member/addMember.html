@@ -201,10 +201,15 @@
         laydate.render({
             elem: '#date1',
             type: 'date', //默认，可不填
-            min:'1966-01-01',
-            max:'2021-01-01',
+
             trigger:'click',
+            max: maxDate()
         });
+        // 设置最大可选的日期
+        function maxDate() {
+            var now = new Date();
+            return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+        }
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
