@@ -151,13 +151,19 @@
 
 
 
-            //年选择器
+           //年选择器
         laydate.render({
             elem: '#year'
             ,type: 'year',
-            max:'2020-12-31',
+
             trigger:'click',
+            max: maxDate()
         });
+        // 设置最大可选的日期
+        function maxDate() {
+            var now = new Date();
+            return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+        }
 
 
 
